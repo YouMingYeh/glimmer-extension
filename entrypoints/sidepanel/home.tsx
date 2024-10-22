@@ -22,11 +22,11 @@ export function Home() {
               {t("other.contactUs")}
             </a>{" "}
             |{" "}
-            <a href="https://glimmer-eight.vercel.app/privacy" className="text-primary hover:underline">
+            <a href="https://glimmer.adastra.tw/privacy" className="text-primary hover:underline">
               {t("other.privacyPolicy")}
             </a>{" "}
             |{" "}
-            <a href="https://glimmer-eight.vercel.app/terms" className="text-primary hover:underline">
+            <a href="https://glimmer.adastra.tw/terms" className="text-primary hover:underline">
               {t("other.termsOfService")}
             </a>
           </p>

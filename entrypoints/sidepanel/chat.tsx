@@ -40,7 +40,7 @@ function Chat_({ initialMessages }: { initialMessages: Message[] }) {
     isLoading,
   } = useChat({
     maxSteps: 5,
-    api: "https://glimmer-eight.vercel.app/api/chat",
+    api: "https://glimmer.adastra.tw/api/chat",
     initialMessages: initialMessages,
     // run client-side tools that are automatically executed:
     async onToolCall({ toolCall }) {},
