@@ -1,0 +1,26 @@
+{
+  "home": "首頁",
+  "settings": "設定",
+  "themeSettings": "主題設定",
+  "i18nSettings": "介面語言",
+  "introduce": "簡介",
+  "description": "Glimmer 是一個瀏覽器擴充功能，通過提供一套工具來幫助您專注、保持組織和完成任務，從而提高您的生產力。",
+  "reference": "參考",
+  "profile": "個人資料",
+  "features": {
+    "title": "特性",
+    "quickActions": "快速操作",
+    "quickActionsDescription": "通過高亮文本快速訪問 Google 搜索、ChatGPT、複製到剪貼板、困惑度。",
+    "floatingMenu": "浮動選單",
+    "floatingMenuDescription": "提供快速訪問所有工具和配置的浮動選單。",
+    "i18n": "介面語言",
+    "i18nDescription": "將介面語言更改為您喜歡的語言。",
+    "theme": "主題設定",
+    "themeDescription": "將擴充功能的主題更改為淺色或深色模式。"
+  },
+  "other": {
+    "privacyPolicy": "隱私政策",
+    "termsOfService": "服務條款",
+    "contactUs": "聯絡我們"
+  }
+}
