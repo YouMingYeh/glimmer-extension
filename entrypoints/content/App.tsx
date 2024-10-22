@@ -348,7 +348,7 @@ const Modal = ({
                 organized, and get things done.
               </p>
               <a
-                href="mailto:b10705052@ntu.edu.tw"
+                href="mailto:ym911216@gmail.com"
                 className="text-primary underline"
               >
                 Contact Me

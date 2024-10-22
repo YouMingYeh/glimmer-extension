@@ -18,7 +18,7 @@ export function Home() {
           </p>
           {/* contact, terms, privacy */}
           <p className="text-sm max-w-lg text-balance leading-relaxed">
-            <a href="mailto:b10705052@ntu.edu.tw" className="text-primary hover:underline">
+            <a href="mailto:ym911216@gmail.com" className="text-primary hover:underline">
               {t("other.contactUs")}
             </a>{" "}
             |{" "}
