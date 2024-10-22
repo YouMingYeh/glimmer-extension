@@ -1,0 +1,26 @@
+{
+  "home": "首页",
+  "settings": "设置",
+  "themeSettings": "主题设置",
+  "i18nSettings": "界面语音",
+  "introduce": "简介",
+  "description": "Glimmer 是一个浏览器扩展，通过提供一套工具来帮助您专注、保持组织和完成任务，从而提高您的生产力。",
+  "reference": "参考",
+  "profile": "个人资料",
+  "features": {
+    "title": "特性",
+    "quickActions": "快速操作",
+    "quickActionsDescription": "通过高亮文本快速访问 Google 搜索、ChatGPT、复制到剪贴板、困惑度。",
+    "floatingMenu": "浮动菜单",
+    "floatingMenuDescription": "提供快速访问所有工具和配置的浮动菜单。",
+    "i18n": "界面语音",
+    "i18nDescription": "将界面语言更改为您喜欢的语言。",
+    "theme": "主题设置",
+    "themeDescription": "将扩展的主题更改为浅色或深色模式。"
+  },
+  "other": {
+    "privacyPolicy": "隐私政策",
+    "termsOfService": "服务条款",
+    "contactUs": "联系我们"
+  }
+}
