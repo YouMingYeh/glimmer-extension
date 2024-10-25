@@ -176,7 +176,7 @@ export default () => {
   const side = direction === "up" || direction === "down" ? "right" : "top";
 
   return (
-    <div className={theme}>
+    <div className={cn(theme, "z-[100000]")}>
       <AIToolTip enabled={enabled} />
       <Draggable onStop={(e, data) => console.log(data)}>
         <div
@@ -222,7 +222,9 @@ export default () => {
                       {locked ? <Lock /> : <LockOpen />}
                     </Button>
                   </TooltipTrigger>
-                  <TooltipContent side={side}>Toggle Toolbar Expansion</TooltipContent>
+                  <TooltipContent side={side}>
+                    Toggle Toolbar Expansion
+                  </TooltipContent>
                 </Tooltip>
                 <Tooltip>
                   <TooltipTrigger asChild>
@@ -235,7 +237,9 @@ export default () => {
                       {enabled ? <Lightbulb /> : <LightbulbOff />}
                     </Button>
                   </TooltipTrigger>
-                  <TooltipContent side={side}>Toggle Tooltip Helper</TooltipContent>
+                  <TooltipContent side={side}>
+                    Toggle Tooltip Helper
+                  </TooltipContent>
                 </Tooltip>
 
                 <Tooltip>
@@ -337,7 +341,9 @@ const Modal = ({
             className="bg-background rounded-lg p-4 flex justify-center items-center flex-col min-h-[200px] min-w-[200px] gap-2 max-w-lg max-h-[80vh]"
             onClick={(e) => e.stopPropagation()}
           >
-            <h1 className="text-xl font-semibold text-foreground">{t("about")}</h1>
+            <h1 className="text-xl font-semibold text-foreground">
+              {t("about")}
+            </h1>
             <div className="text-center space-y-2 p-4">
               <p className="text-lg font-bold text-foreground">
                 Glimmer | Your Browser Productivity Companion
@@ -414,10 +420,14 @@ const SettingsSheet = ({
             onClick={(e) => e.stopPropagation()}
             transition={{ ease: "easeInOut" }}
           >
-            <h1 className="text-xl font-semibold text-foreground">{t("settings")}</h1>
+            <h1 className="text-xl font-semibold text-foreground">
+              {t("settings")}
+            </h1>
             <div className="space-y-8">
               <div className="flex flex-col">
-                <Label className="text-foreground">Expand Direction of Toolbar</Label>
+                <Label className="text-foreground">
+                  Expand Direction of Toolbar
+                </Label>
                 <Button
                   className="hover:scale-150 text-muted-foreground transition-all hover:bg-transparent"
                   size="icon"
@@ -433,7 +443,9 @@ const SettingsSheet = ({
                 </p>
               </div>
               <div className="flex flex-col">
-                <Label className="text-foreground">Toggle Toolbar Expansion</Label>
+                <Label className="text-foreground">
+                  Toggle Toolbar Expansion
+                </Label>
                 <Button
                   className="hover:scale-150 text-muted-foreground transition-all hover:bg-transparent"
                   size="icon"

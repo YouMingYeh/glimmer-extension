@@ -71,9 +71,9 @@ function Chat_({ initialMessages }: { initialMessages: Message[] }) {
     const newMessages = storedMessages
       ? [...storedMessages, ...messages_]
       : messages_;
-    const uniqueMessages = newMessages.filter(
+    const uniqueMessages = newMessages.reverse().filter(
       (m, i, self) => self.findIndex((m_) => m_.id === m.id) === i
-    );
+    ).reverse();
     await browser.storage.local.set({ messages: uniqueMessages });
   };
 

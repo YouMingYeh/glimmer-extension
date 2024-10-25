@@ -74,7 +74,7 @@ export default function AIToolTip({ enabled }: { enabled: boolean }) {
                 }}
               />
             </TooltipTrigger>
-            <TooltipContent side="top" className="flex space-x-2 z-[10000000]">
+            <TooltipContent side="top" className="flex space-x-2 z-[10000000000000]">
               <Button
                 onClick={() => {
                   window.open(

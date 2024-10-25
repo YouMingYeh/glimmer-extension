@@ -18,15 +18,26 @@ export function Home() {
           </p>
           {/* contact, terms, privacy */}
           <p className="text-sm max-w-lg text-balance leading-relaxed">
-            <a href="mailto:ym911216@gmail.com" className="text-primary hover:underline">
+            <a
+              href="mailto:ym911216@gmail.com"
+              className="text-primary hover:underline"
+            >
               {t("other.contactUs")}
             </a>{" "}
             |{" "}
-            <a href="https://glimmer.adastra.tw/privacy" className="text-primary hover:underline">
+            <a
+              href="https://glimmer.adastra.tw/privacy"
+              target="_blank"
+              className="text-primary hover:underline"
+            >
               {t("other.privacyPolicy")}
             </a>{" "}
             |{" "}
-            <a href="https://glimmer.adastra.tw/terms" className="text-primary hover:underline">
+            <a
+              href="https://glimmer.adastra.tw/terms"
+              target="_blank"
+              className="text-primary hover:underline"
+            >
               {t("other.termsOfService")}
             </a>
           </p>
