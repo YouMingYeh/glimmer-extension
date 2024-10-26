@@ -22,5 +22,9 @@
     "privacyPolicy": "Privacy Policy",
     "termsOfService": "Terms of Service",
     "contactUs": "Contact Us"
+  },
+  "tooltip": {
+    "query": "Query the selected text along with additional text.",
+    "queryLabel": "Query"
   }
 }

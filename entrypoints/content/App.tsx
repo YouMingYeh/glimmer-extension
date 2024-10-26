@@ -338,7 +338,7 @@ const Modal = ({
           onClick={closeModal}
         >
           <div
-            className="bg-background rounded-lg p-4 flex justify-center items-center flex-col min-h-[200px] min-w-[200px] gap-2 max-w-lg max-h-[80vh]"
+            className="bg-background rounded-lg p-4 flex justify-center items-center flex-col min-h-[200px] min-w-[200px] gap-2 max-w-lg max-h-[80vh] border"
             onClick={(e) => e.stopPropagation()}
           >
             <h1 className="text-xl font-semibold text-foreground">
@@ -349,7 +349,7 @@ const Modal = ({
                 Glimmer | Your Browser Productivity Companion
               </p>
               <p className="text-sm text-muted-foreground">
-                Zap is a browser extension that supercharges your productivity
+                Glimmer is a browser extension that supercharges your productivity
                 by providing you with a suite of tools to help you focus, stay
                 organized, and get things done.
               </p>
@@ -413,7 +413,7 @@ const SettingsSheet = ({
         >
           <motion.div
             key="sheet"
-            className="h-full w-[400px] bg-background p-4 flex flex-col gap-2"
+            className="h-full w-[400px] bg-background p-4 flex flex-col gap-2 border"
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}

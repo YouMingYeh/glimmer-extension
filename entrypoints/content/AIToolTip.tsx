@@ -1,4 +1,7 @@
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import {
   Tooltip,
   TooltipContent,
@@ -6,13 +9,17 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Separator } from "@radix-ui/react-separator";
-import { Copy, Zap } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { Copy, Edit3Icon, X, Zap } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { RiGoogleLine } from "react-icons/ri";
 
 export default function AIToolTip({ enabled }: { enabled: boolean }) {
   const [selectedText, setSelectedText] = useState<string | null>(null);
+  const [additionalText, setAdditionalText] = useState<string | null>(null);
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
+  const { t } = useTranslation();
   const [tooltipPosition, setTooltipPosition] = useState<{
     x: number;
     y: number;
@@ -74,13 +81,15 @@ export default function AIToolTip({ enabled }: { enabled: boolean }) {
                 }}
               />
             </TooltipTrigger>
-            <TooltipContent side="top" className="flex space-x-2 z-[10000000000000]">
+            <TooltipContent
+              side="top"
+              className="flex space-x-2 z-[10000000000000]"
+            >
               <Button
                 onClick={() => {
                   window.open(
                     `https://www.google.com/search?q=${selectedText}`
                   );
-                  window.navigator.clipboard.writeText(selectedText);
                   window.open(`https://chatgpt.com/?q=${selectedText}`);
                   window.open(`https://www.perplexity.ai/?q=${selectedText}`);
                   setIsTooltipVisible(false);
@@ -88,7 +97,7 @@ export default function AIToolTip({ enabled }: { enabled: boolean }) {
                 size="icon"
                 variant="ghost"
               >
-                <Zap className="text-primary"/>
+                <Zap className="text-primary" />
               </Button>
               <Button
                 onClick={() => {
@@ -102,7 +111,7 @@ export default function AIToolTip({ enabled }: { enabled: boolean }) {
               >
                 <RiGoogleLine />
               </Button>
-              
+
               <Button
                 onClick={() => {
                   window.open(`https://chatgpt.com/?q=${selectedText}`);
@@ -123,7 +132,20 @@ export default function AIToolTip({ enabled }: { enabled: boolean }) {
               >
                 <PerplexitySVG />
               </Button>
-              <Separator orientation="vertical" className="shrink-0 bg-border min-h-[80%] w-[1px]"/>
+              <Button
+                onClick={() => {
+                  window.open(`https://claude.ai/new?q=${selectedText}`);
+                  setIsTooltipVisible(false);
+                }}
+                size="icon"
+                variant="ghost"
+              >
+                <ClaudeSVG />
+              </Button>
+              <Separator
+                orientation="vertical"
+                className="shrink-0 bg-border min-h-[80%] w-[1px]"
+              />
               <Button
                 onClick={() => {
                   window.navigator.clipboard.writeText(selectedText);
@@ -134,10 +156,87 @@ export default function AIToolTip({ enabled }: { enabled: boolean }) {
               >
                 <Copy />
               </Button>
+
+              <Button
+                onClick={() => {
+                  setAdditionalText('"' + selectedText + '"');
+                  setIsTooltipVisible(false);
+                }}
+                size="icon"
+                variant="ghost"
+              >
+                <Edit3Icon />
+              </Button>
             </TooltipContent>
           </Tooltip>
         </>
       )}
+      <Modal
+        modalOpen={additionalText !== null}
+        onModalClose={() => setAdditionalText(null)}
+      >
+        <h2 className="font-semibold text-center mb-4">{t("tooltip.query")}</h2>
+        <Label className="mb-1">{t("tooltip.queryLabel")}</Label>
+        <Textarea
+          value={additionalText ? additionalText : ""}
+          onChange={(e) => setAdditionalText(e.target.value)}
+        />
+        <div className="flex gap-4 justify-center items-center mt-4">
+          <Button
+            onClick={() => {
+              window.open(`https://www.google.com/search?q=${additionalText}`);
+              window.open(`https://chatgpt.com/?q=${additionalText}`);
+              window.open(`https://www.perplexity.ai/?q=${additionalText}`);
+              setAdditionalText(null);
+            }}
+            size="icon"
+            variant={"outline"}
+          >
+            <Zap className="text-primary" />
+          </Button>
+          <Button
+            onClick={() => {
+              window.open(`https://www.google.com/search?q=${additionalText}`);
+              setAdditionalText(null);
+            }}
+            size="icon"
+            variant={"outline"}
+          >
+            <RiGoogleLine />
+          </Button>
+
+          <Button
+            onClick={() => {
+              window.open(`https://chatgpt.com/?q=${additionalText}`);
+              setAdditionalText(null);
+            }}
+            size="icon"
+            variant={"outline"}
+          >
+            <ChatGPTSVG />
+          </Button>
+          <Button
+            onClick={() => {
+              window.open(`https://www.perplexity.ai/?q=${additionalText}`);
+              setAdditionalText(null);
+            }}
+            size="icon"
+            variant={"outline"}
+          >
+            <PerplexitySVG />
+          </Button>
+          <Button
+            onClick={() => {
+              window.open(`https://claude.ai/new?q=${additionalText}`);
+              setAdditionalText(null);
+            }}
+            size="icon"
+            variant={"outline"}
+          >
+            <ClaudeSVG />
+          </Button>
+        </div>
+      </Modal>
     </>
   );
 }
@@ -149,7 +248,7 @@ const ChatGPTSVG = () => {
       height="2500"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      stroke-width="1.5"
+      strokeWidth="1.5"
       className="h-6 w-6"
       viewBox="-0.17090198558635983 0.482230148717937 41.14235318283891 40.0339509076386"
     >
@@ -168,11 +267,11 @@ const PerplexitySVG = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      shape-rendering="geometricPrecision"
-      text-rendering="geometricPrecision"
-      image-rendering="optimizeQuality"
-      fill-rule="evenodd"
-      clip-rule="evenodd"
+      shapeRendering="geometricPrecision"
+      textRendering="geometricPrecision"
+      imageRendering="optimizeQuality"
+      fillRule="evenodd"
+      clipRule="evenodd"
       viewBox="0 0 512 509.64"
     >
       <path
@@ -181,9 +280,87 @@ const PerplexitySVG = () => {
       />
       <path
         fill="#fff"
-        fill-rule="nonzero"
+        fillRule="nonzero"
         d="M348.851 128.063l-68.946 58.302h68.946v-58.302zm-83.908 48.709l100.931-85.349v94.942h32.244v143.421h-38.731v90.004l-94.442-86.662v83.946h-17.023v-83.906l-96.596 86.246v-89.628h-37.445V186.365h38.732V90.768l95.309 84.958v-83.16h17.023l-.002 84.206zm-29.209 26.616c-34.955.02-69.893 0-104.83 0v109.375h20.415v-27.121l84.415-82.254zm41.445 0l82.208 82.324v27.051h21.708V203.388c-34.617 0-69.274.02-103.916 0zm-42.874-17.023l-64.669-57.646v57.646h64.669zm13.617 124.076v-95.2l-79.573 77.516v88.731l79.573-71.047zm17.252-95.022v94.863l77.19 70.83c0-29.485-.012-58.943-.012-88.425l-77.178-77.268z"
       />
     </svg>
+  );
+};
+
+const ClaudeSVG = () => {
+  return (
+    <svg
+      version="1.0"
+      xmlns="http://www.w3.org/2000/svg"
+      width="250.000000pt"
+      height="250.000000pt"
+      viewBox="0 0 250.000000 250.000000"
+      preserveAspectRatio="xMidYMid meet"
+    >
+      <metadata>
+        Created by potrace 1.16, written by Peter Selinger 2001-2019
+      </metadata>
+      <g
+        transform="translate(0.000000,250.000000) scale(0.100000,-0.100000)"
+        fill="#000000"
+        stroke="none"
+      >
+        <path
+          d="M916 1802 c-5 -8 -358 -953 -402 -1074 l-13 -38 117 0 118 0 40 113
+ 40 112 221 3 221 2 42 -115 42 -115 115 0 c114 0 115 0 109 23 -3 12 -95 263
+ -205 557 l-199 535 -120 3 c-66 1 -123 -1 -126 -6z m194 -472 c35 -96 65 -181
+ 68 -187 3 -10 -28 -13 -137 -13 -78 0 -141 3 -141 7 0 20 136 381 141 375 3
+ -4 35 -86 69 -182z"
+        />
+        <path
+          d="M1560 1253 l207 -558 116 -3 117 -3 -27 73 c-15 40 -108 291 -208
+ 558 l-180 485 -116 3 -116 3 207 -558z"
+        />
+      </g>
+    </svg>
+  );
+};
+
+const Modal = ({
+  modalOpen,
+  onModalClose,
+  children,
+}: {
+  modalOpen: boolean;
+  onModalClose: () => void;
+  children: React.ReactNode;
+}) => {
+  const closeModal = () => {
+    onModalClose();
+  };
+  return (
+    <AnimatePresence>
+      {modalOpen && (
+        <motion.div
+          key="modal"
+          className={`fixed inset-0 bg-black/50 flex items-center justify-center z-[10000000000000]`}
+          initial={{ opacity: 0.5 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          onClick={closeModal}
+        >
+          <div
+            className="bg-background shadow-lg rounded-lg p-4 relative w-full max-w-md border"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {children}
+            <Button
+              onClick={closeModal}
+              size="icon"
+              className="absolute top-4 right-4"
+              variant={"ghost"}
+            >
+              <X />
+            </Button>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };

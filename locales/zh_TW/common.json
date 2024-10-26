@@ -22,5 +22,9 @@
     "privacyPolicy": "隱私政策",
     "termsOfService": "服務條款",
     "contactUs": "聯絡我們"
+  },
+  "tooltip": {
+    "query": "查詢附加其他文字以搜尋所選文本。",
+    "queryLabel": "查詢"
   }
 }
