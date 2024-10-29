@@ -28,17 +28,17 @@ export default function AIToolTip({ enabled }: { enabled: boolean }) {
   const handleTextSelection = useCallback(() => {
     const selection = window.getSelection();
     const text = selection?.toString().trim();
-
+  
     if (text && text.length > 0) {
       setSelectedText(text);
       const range = selection?.getRangeAt(0);
       const rect = range?.getBoundingClientRect();
       if (rect) {
         setTooltipPosition({
-          x: rect.left + window.scrollX + rect.width / 2,
-          y: rect.top + window.scrollY - 10,
+          x: rect.left + rect.width / 2,
+          y: rect.top - 10,
         });
-        if (rect.top + window.scrollY - 10 < 0) {
+        if (rect.top - 10 < 0) {
           setIsTooltipVisible(false);
         } else {
           setIsTooltipVisible(true);
@@ -47,7 +47,7 @@ export default function AIToolTip({ enabled }: { enabled: boolean }) {
     } else {
       setIsTooltipVisible(false);
     }
-  }, []);
+  }, []);  
 
   const handleMouseDown = useCallback(() => {
     setIsTooltipVisible(false);
@@ -92,6 +92,7 @@ export default function AIToolTip({ enabled }: { enabled: boolean }) {
                   );
                   window.open(`https://chatgpt.com/?q=${selectedText}`);
                   window.open(`https://www.perplexity.ai/?q=${selectedText}`);
+                  window.open(`https://claude.ai/new?q=${selectedText}`);
                   setIsTooltipVisible(false);
                 }}
                 size="icon"
@@ -187,6 +188,7 @@ export default function AIToolTip({ enabled }: { enabled: boolean }) {
               window.open(`https://www.google.com/search?q=${additionalText}`);
               window.open(`https://chatgpt.com/?q=${additionalText}`);
               window.open(`https://www.perplexity.ai/?q=${additionalText}`);
+              window.open(`https://claude.ai/new?q=${additionalText}`);
               setAdditionalText(null);
             }}
             size="icon"
